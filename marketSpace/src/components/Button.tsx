@@ -1,5 +1,4 @@
 import { ButtonIcon, ButtonSpinner, ButtonText, Button as GluestackButton } from "@gluestack-ui/themed";
-import { isLoading } from "expo-font";
 import React, { ComponentProps, ComponentType } from "react";
 
 
@@ -7,16 +6,24 @@ type ButtonProps = ComponentProps<typeof GluestackButton> & {
   title: string;
   icon?: ComponentType<any>;
   isLoading?: boolean;
-  textColor?: "white" | "black"
+  buttonColor?: "blue" | "gray" | "black";
 }
 
-export function Button({ title, icon, textColor = "white", isLoading = false, ...rest }: ButtonProps) {
+export function Button({ title, icon, buttonColor = "blue", isLoading = false, ...rest }: ButtonProps) {
   return (
     <GluestackButton
       {...rest}
       w="$full"
       h="$11"
       rounded="$sm"
+      bg={
+        buttonColor === "blue" ? "$lightBlue100" :
+          buttonColor === "gray" ? "$gray500" : "$gray100"
+      }
+      $active-bg={
+        buttonColor === "blue" ? "$blue100" :
+          buttonColor === "gray" ? "$gray400" : "$gray200"
+      }
       disabled={isLoading}
     >
       {
@@ -27,7 +34,7 @@ export function Button({ title, icon, textColor = "white", isLoading = false, ..
 
               <ButtonText
                 fontFamily="$heading"
-                color={textColor === "white" ? "$gray700" : "$gray100"}
+                color={["blue", "black"].includes(buttonColor) ? "$gray700" : "$gray100"}
                 fontSize="$sm"
               >
                 {title}

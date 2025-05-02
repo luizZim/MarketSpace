@@ -23,7 +23,8 @@ export function Input({ icon: Icon, iconColor = "$gray400", onIconPress, ...rest
     >
       <InputField
         bg="gray700"
-        color="$gray400"
+        color="$gray200"
+        placeholderTextColor="$gray400"
         fontFamily="$body"
         px="$4"
         {...rest}
